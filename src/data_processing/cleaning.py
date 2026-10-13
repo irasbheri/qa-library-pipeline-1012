@@ -57,7 +57,7 @@ def handle_missing_values(df, strategy='drop', fill_value=None, columns=None):
     df = df.copy()
 
     if columns:
-        target_cols = columns
+        target_cols = columns 
     else:
         target_cols = df.columns
 

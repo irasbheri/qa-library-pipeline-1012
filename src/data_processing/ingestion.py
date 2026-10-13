@@ -65,7 +65,7 @@ def load_json(filepath):
     try:
         df = pd.json_normalize(data)
     except:
-        logger.error(f"Error loading JSON {filepath}: {e}")
+        logger.error(f"Error loading JSON {filepath}")
         raise
 
     logger.info(f"Successfully loaded {len(df)} rows from {filepath}")
