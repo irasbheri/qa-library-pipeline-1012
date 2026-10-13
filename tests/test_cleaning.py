@@ -5,7 +5,6 @@ and standardise_dates are implemented in src/data_processing/cleaning.py.
 """
 import pytest
 import pandas as pd
-import pandas.testing as pdt
 from data_processing.cleaning import (
     remove_duplicates,
     handle_missing_values,
