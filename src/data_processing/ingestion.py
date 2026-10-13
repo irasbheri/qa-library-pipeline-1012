@@ -36,7 +36,7 @@ def load_csv(filepath):
     except Exception as e:
         logger.error(f"Error loading CSV {filepath}: {e}")
         raise
-        
+
     logger.info(f"Successfully loaded {len(df)} rows from {filepath}")
     return df
 
