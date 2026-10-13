@@ -24,7 +24,21 @@ def load_csv(filepath):
 
     TODO: Add error handling and logging
     """
-    return pd.read_csv(filepath)
+    filepath = Path(filepath)
+
+    # Check file exists
+    if not filepath.exists():
+        logger.error(f"CSV File not found: {filepath}")
+        raise FileNotFoundError(f"CSV File not found: {filepath}")
+
+    try:
+        df = pd.read_csv(filepath)
+    except Exception as e:
+        logger.error(f"Error loading CSV {filepath}: {e}")
+        raise
+        
+    logger.info(f"Successfully loaded {len(df)} rows from {filepath}")
+    return df
 
 
 def load_json(filepath):
@@ -38,9 +52,24 @@ def load_json(filepath):
 
     TODO: Implement JSON loading and flattening
     """
+    filepath = Path(filepath)
+
+    # Check file exists
+    if not filepath.exists():
+        logger.error(f"JSON File not found: {filepath}")
+        raise FileNotFoundError(f"JSON File not found: {filepath}")
+
     with open(filepath, "r") as f:
         data = json.load(f)
-    return pd.json_normalize(data)
+
+    try:
+        df = pd.json_normalize(data)
+    except:
+        logger.error(f"Error loading JSON {filepath}: {e}")
+        raise
+
+    logger.info(f"Successfully loaded {len(df)} rows from {filepath}")
+    return df
 
 
 def load_excel(filepath, sheet_name=0, **kwargs):
